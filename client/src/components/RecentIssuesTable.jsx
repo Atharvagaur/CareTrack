@@ -1,4 +1,4 @@
-import { Pencil, Trash2 } from 'lucide-react';
+import { Pencil, Trash2, Sparkles } from 'lucide-react';
 import StatusBadge from './StatusBadge.jsx';
 import PriorityBadge from './PriorityBadge.jsx';
 import EmptyState from './EmptyState.jsx';
@@ -23,9 +23,10 @@ export default function RecentIssuesTable({
   emptyMessage,
   onEdit,
   onDelete,
+  onSummarize,
   actionsDisabled = false,
 }) {
-  const showActions = Boolean(onEdit || onDelete);
+  const showActions = Boolean(onEdit || onDelete || onSummarize);
 
   if (!issues.length) {
     return <EmptyState message={emptyMessage} />;
@@ -79,6 +80,18 @@ export default function RecentIssuesTable({
               {showActions && (
                 <td className="px-4 py-3 text-right sm:px-6">
                   <div className="flex justify-end gap-1">
+                    {onSummarize && (
+                      <button
+                        type="button"
+                        onClick={() => onSummarize(issue)}
+                        disabled={actionsDisabled}
+                        className="rounded-md p-1.5 text-slate-400 transition-colors hover:bg-indigo-50 hover:text-indigo-600 disabled:opacity-40"
+                        aria-label={`Generate AI summary for ${issue.title}`}
+                        title="Generate AI summary"
+                      >
+                        <Sparkles className="h-4 w-4" />
+                      </button>
+                    )}
                     {onEdit && (
                       <button
                         type="button"

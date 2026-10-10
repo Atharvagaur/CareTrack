@@ -15,6 +15,7 @@ import Card from '../components/Card.jsx';
 import RecentIssuesTable from '../components/RecentIssuesTable.jsx';
 import Modal from '../components/Modal.jsx';
 import IssueFormModal from '../components/IssueFormModal.jsx';
+import AISummaryModal from '../components/AISummaryModal.jsx';
 import LoadingState from '../components/LoadingState.jsx';
 import ErrorState from '../components/ErrorState.jsx';
 import EmptyState from '../components/EmptyState.jsx';
@@ -47,6 +48,7 @@ export default function Issues() {
 
   const [form, setForm] = useState({ open: false, mode: 'create', issue: null });
   const [deleteTarget, setDeleteTarget] = useState(null);
+  const [aiTarget, setAiTarget] = useState(null);
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState(null);
 
@@ -215,6 +217,7 @@ export default function Issues() {
               issues={issues}
               onEdit={isMock ? undefined : openEdit}
               onDelete={isMock ? undefined : (issue) => setDeleteTarget(issue)}
+              onSummarize={isMock ? undefined : (issue) => setAiTarget(issue)}
             />
             <p className="mt-4 px-4 text-xs text-slate-400 sm:px-6">
               Showing {issues.length} issue{issues.length === 1 ? '' : 's'}
@@ -232,6 +235,8 @@ export default function Issues() {
           onSubmit={handleSubmit}
         />
       )}
+
+      {aiTarget && <AISummaryModal issue={aiTarget} onClose={() => setAiTarget(null)} />}
 
       {deleteTarget && (
         <Modal

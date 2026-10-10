@@ -9,6 +9,15 @@ const envSchema = z.object({
     .default('http://localhost:5173,http://localhost:5174')
     .transform((value) => value.split(',').map((origin) => origin.trim()).filter(Boolean)),
   MONGODB_URI: z.string().min(1).default('mongodb://127.0.0.1:27017/caretrack'),
+  // OpenRouter (AI summarization). Optional so the API can run without AI.
+  OPENROUTER_API_KEY: z
+    .string()
+    .optional()
+    .transform((value) => (value && value.trim() ? value.trim() : undefined)),
+  OPENROUTER_MODEL: z
+    .string()
+    .optional()
+    .transform((value) => (value && value.trim() ? value.trim() : undefined)),
 });
 
 const result = envSchema.safeParse(process.env);

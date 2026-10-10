@@ -3,6 +3,7 @@ import cors from 'cors';
 import { env } from './config/env.js';
 import healthRoutes from './routes/health.routes.js';
 import issueRoutes from './routes/issue.routes.js';
+import aiRoutes from './routes/ai.routes.js';
 import { notFound, errorHandler } from './middleware/errorHandler.js';
 
 export function createApp() {
@@ -19,6 +20,7 @@ export function createApp() {
 
   app.use('/api/health', healthRoutes);
   app.use('/api/issues', issueRoutes);
+  app.use('/api/ai', aiRoutes);
 
   app.use(notFound);
   app.use(errorHandler);

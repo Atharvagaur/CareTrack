@@ -34,3 +34,10 @@ test-results/
 .env.*
 !.env.example
 !.env.example.*
+
+# Secret key files (never commit)
+key.txt
+key.txxt
+*.key
+*.pem
+secrets/
