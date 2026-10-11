@@ -1,7 +1,7 @@
 /**
  * MOCK DATA - clearly identifiable sample content for the initial UI.
  * Nothing here comes from a real healthcare system; no patient data is used.
- * Replace with API responses once the issues endpoints are implemented.
+ * Replaced with API responses after the issues endpoints were implemented.
  */
 
 export const MOCK_ISSUES = [
