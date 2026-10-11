@@ -62,10 +62,6 @@ export default function Sidebar({ open, onClose }) {
             </NavLink>
           ))}
         </nav>
-
-        <div className="border-t border-slate-800 px-5 py-4 text-xs text-slate-500">
-          Demo build - synthetic data only
-        </div>
       </aside>
     </>
   );
